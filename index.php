@@ -29,7 +29,7 @@ $result=$controller->getEmployees(); // ดึงข้อมูลพนัก�
         <td>
           <a onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?')"
             href="delete.php?id=<?php echo $row["emp_id"]; ?>" class="btn btn-danger">ลบข้อมูล</a>
-          <a href="editForm.php?id=<?php echo $row["emp_id"]; ?>" class="btn btn-warning">แก้ไขข้อมูล</a>
+          <a href="editForm.php?id=<?php echo $row["emp_id"]; ?>" class="btn btn-warning">แก้ไขข้อมูล</a> <!-- // สร้างลิงค์ไปยังหน้าแก้ไขข้อมูล -->
         </td>
       </tr>
     <?php } ?>

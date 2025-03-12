@@ -48,16 +48,17 @@ class Controller{
         }
     }
 
+    // ฟังก์ชันสำหรับลบข้อมูลพนักงาน
     function delete($id){
         try{
-            $sql="DELETE FROM employees WHERE emp_id=:id";
-            $stmt=$this->db->prepare($sql);
-            $stmt->bindParam(":id",$id);
-            $stmt->execute();
+            $sql="DELETE FROM employees WHERE emp_id=:id"; // สร้างคำสั่ง SQL สำหรับการลบข้อมูล
+            $stmt=$this->db->prepare($sql); // สร้าง object PDOStatement จากคำสั่ง SQL
+            $stmt->bindParam(":id",$id); // กำหนดค่าพารามิเตอร์ให้กับคำสั่ง SQL
+            $stmt->execute(); // ประมวลผลคำสั่ง SQL
             return true;
-        }catch(PDOException $e){
-            echo $e->getMessage();
-            return false;
+        }catch(PDOException $e){ // กรณีเกิดข้อผิดพลาด
+            echo $e->getMessage(); // แสดงข้อความข้อผิดพลาด
+            return false; // คืนค่ากลับเป็น false
         }
     }
 
