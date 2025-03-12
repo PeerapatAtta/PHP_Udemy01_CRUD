@@ -1,11 +1,12 @@
-<?php 
-$title="หน้าแรกของเว็บไซต์";
+<?php
+$title = "หน้าแรกของเว็บไซต์";
 require_once "layout/header.php";
-// require_once "db/connect.php";
-// require_once "layout/check_admin.php";
-// $result=$controller->getEmployees();
+require_once "db/connect.php";
+require_once "layout/check_admin.php";
+$result=$controller->getEmployees(); // ดึงข้อมูลพนักงาน จากฐานข้อมูล
 ?>
-    <h1 class="text-center"><?php echo "ข้อมูลพนักงาน";?></h1>
+
+<h1 class="text-center"><?php echo "ข้อมูลพนักงาน"; ?></h1>
 <table class="table">
   <thead>
     <tr>
@@ -16,24 +17,26 @@ require_once "layout/header.php";
       <th scope="col">ดำเนินการ</th>
     </tr>
   </thead>
-  
-  <!-- <tbody> -->
-    <!-- <?php while($row=$result->fetch(PDO::FETCH_ASSOC)){?> -->
-    <!-- <tr>
-        <td><?php echo $row["fname"];?></td>
-        <td><?php echo $row["lname"];?></td>
-        <td><?php echo number_format($row["salary"]);?></td>
-        <td><?php echo $row["department_name"];?></td>
+
+  <tbody>
+    <!-- วนลูปแสดงข้อมูลพนักงาน ที่ดึงมาจากฐานข้อมูล -->
+    <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?> 
+      <tr>
+        <td><?php echo $row["fname"]; ?></td>
+        <td><?php echo $row["lname"]; ?></td>
+        <td><?php echo number_format($row["salary"]); ?></td>
+        <td><?php echo $row["department_name"]; ?></td>
         <td>
           <a onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?')"
-          href="delete.php?id=<?php echo $row["emp_id"];?>" class="btn btn-danger">ลบข้อมูล</a>
-          <a href="editForm.php?id=<?php echo $row["emp_id"];?>" class="btn btn-warning">แก้ไขข้อมูล</a>
+            href="delete.php?id=<?php echo $row["emp_id"]; ?>" class="btn btn-danger">ลบข้อมูล</a>
+          <a href="editForm.php?id=<?php echo $row["emp_id"]; ?>" class="btn btn-warning">แก้ไขข้อมูล</a>
         </td>
-    </tr> -->
-    <?php }?>
-  <!-- </tbody> -->
-   
+      </tr>
+    <?php } ?>
+  </tbody>
+
 </table>
 </div>
 </body>
+
 </html>
