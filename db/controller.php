@@ -62,23 +62,25 @@ class Controller{
         }
     }
 
+    // ฟังก์ชันสำหรับดึงข้อมูลพนักงานจากฐานข้อมูล
     function getEmployeeDetail($id){
         try{
             $sql="SELECT * FROM employees a 
             INNER JOIN departments b
             ON a.department_id = b.department_id
-            WHERE emp_id = :id";
-            $stmt=$this->db->prepare($sql);
-            $stmt->bindParam(":id",$id);
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        }catch(PDOException $e){
-            echo $e->getMessage();
-            return false;
+            WHERE emp_id = :id"; // สร้างคำสั่ง SQL สำหรับการดึงข้อมูลพนักงาน
+            $stmt=$this->db->prepare($sql); // สร้าง object PDOStatement จากคำสั่ง SQL
+            $stmt->bindParam(":id",$id); // กำหนดค่าพารามิเตอร์ให้กับคำสั่ง SQL
+            $stmt->execute(); // ประมวลผลคำสั่ง SQL
+            $result = $stmt->fetch(PDO::FETCH_ASSOC); // ดึงข้อมูลออกมาและเก็บไว้ในตัวแปร $result
+            return $result; // คืนค่ากลับเป็น $result
+        }catch(PDOException $e){ // กรณีเกิดข้อผิดพลาด
+            echo $e->getMessage(); // แสดงข้อความข้อผิดพลาด
+            return false; // คืนค่ากลับเป็น false
         }
     }
 
+    // ฟังก์ชันสำหรับอัพเดตข้อมูลพนักงาน
     function update($fname,$lname,$salary,$department_id,$emp_id){
         try{
             $sql="UPDATE employees 
