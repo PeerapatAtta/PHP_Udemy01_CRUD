@@ -27,6 +27,7 @@ require_once "layout/session.php";
         <li class="nav-item">
           <a class="nav-link" href="addForm.php">บันทึกข้อมูล</a>
         </li>
+        <!-- // ส่วนของการเช็คว่ามีการเข้าสู่ระบบหรือไม่ -->
         <?php if(!isset($_SESSION["userid"])){?>
           <li class="nav-item">
               <a class="nav-link" href="loginForm.php">เข้าสู่ระบบ</a>
@@ -41,6 +42,7 @@ require_once "layout/session.php";
             </ul>
           </li>
         <?php } ?>
+        
       </ul>
     </div>
   </div>
